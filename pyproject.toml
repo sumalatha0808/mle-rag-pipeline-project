@@ -20,3 +20,5 @@ dev = [
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+# The reference solution has same-named test modules; run it with `pytest solution/tests`.
+testpaths = ["tests"]

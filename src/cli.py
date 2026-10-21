@@ -112,5 +112,28 @@ def ask_cmd(question: str, mode: str, show_context: bool) -> None:
             click.echo(f"\n  {hit.rank}. {hit.chunk_id} score={hit.score:.3f} ({kept})\n     {hit.text}")
 
 
+@cli.command("evaluate")
+@click.option("--mode", type=click.Choice(["extractive", "llm"]), default="extractive",
+              show_default=True)
+def evaluate_cmd(mode: str) -> None:
+    """Run every questions.json case through the pipeline and score it."""
+    from src.evaluation import evaluate
+
+    report = evaluate(mode)
+    click.echo(f"Mode: {report['mode']} ({report['generation_model']}) | settings: {report['settings']}")
+    for key, value in report["summary"].items():
+        click.echo(f"  {key:<32} {value}")
+    click.echo("\n  id     expect   got      ok  R@k  RR    rel   faith  reason")
+    for c in report["cases"]:
+        fmt = lambda v: "-" if v is None else (v if isinstance(v, str) else f"{v:.2f}")
+        click.echo(
+            f"  {c['id']:<6} {'abstain' if c['should_abstain'] else 'answer':<8} "
+            f"{'answer' if c['answered'] else 'abstain':<8} {'Y' if c['decision_correct'] else 'N':<3} "
+            f"{fmt(c['recall_at_k']):<4} {fmt(c['reciprocal_rank']):<5} {fmt(c['answer_relevance']):<5} "
+            f"{fmt(c['faithfulness']):<6} {c['reason']}"
+        )
+    click.echo(f"\nSaved {report['output_file']}")
+
+
 if __name__ == "__main__":
     cli()
