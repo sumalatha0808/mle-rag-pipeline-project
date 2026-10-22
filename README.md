@@ -140,10 +140,4 @@ Answered in full in [section 8 of the report](reports/evaluation_report.md#8-sub
 
 [solution/](solution/README.md) contains the course's separate reference implementation. It shares this environment; run its tests with `uv run pytest solution/tests`. This project's code in `src/` is independent of it.
 
-## References
 
-- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401), Lewis et al., 2020
-- [Sentence-BERT](https://arxiv.org/abs/1908.10084), Reimers and Gurevych, 2019
-- [OWASP LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-- [Qdrant Local Quickstart](https://qdrant.tech/documentation/quickstart/)
-- [Ragas faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/)
