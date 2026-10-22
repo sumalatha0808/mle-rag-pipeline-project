@@ -90,7 +90,4 @@ Do **not** edit `data/` files. Do **not** look at `questions.json` results while
 - [x] Fresh clone → `uv sync` → commands work
 - [ ] Merge PRs, final check of the acceptance checklist in `project-description.md`
 
----
 
-**Tip:** `solution/` contains a working reference implementation (`solution/rag_project/`, `solution/reports/reference_evaluation.md`).
-Use it to get unstuck, but build and justify your own design.
